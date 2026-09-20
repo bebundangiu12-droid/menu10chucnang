@@ -1,20 +1,9 @@
 {
-  "name": "Menu 10 V2",
-  "short_name": "Menu10 V2",
+  "name": "MENU 10 CHỨC NĂNG VIP PRO",
+  "short_name": "VANNAM VIP",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#050505",
-  "theme_color": "#00ffcc",
-  "icons": [
-    {
-      "src": "icon-180.png",
-      "sizes": "180x180",
-      "type": "image/png"
-    },
-    {
-      "src": "icon-1024.png",
-      "sizes": "1024x1024",
-      "type": "image/png"
-    }
-  ]
+  "background_color": "#070914",
+  "theme_color": "#070914",
+  "orientation": "portrait"
 }

@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#050505">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Menu 10 V2">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-180.png">
+<title>⚡ MENU 10 V2</title>
+<style>
+:root{--bg:#050505;--panel:#0d1110;--cyan:#00ffcc;--muted:#7b8a86;--red:#ff4d6d;--green:#55ff88}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#10201c 0,#050505 45%);color:#eafff8;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh;padding:18px}
+.wrap{max-width:760px;margin:auto}.hero{border:1px solid #17483d;border-radius:22px;padding:18px;background:linear-gradient(145deg,#0c1714,#070908);box-shadow:0 0 30px #00ffcc14}
+.avatar{width:74px;height:74px;border-radius:18px;object-fit:cover;border:2px solid var(--cyan);float:left;margin-right:14px}.title{font-size:25px;font-weight:800;padding-top:5px}.sub{color:var(--muted);font-size:13px;margin-top:5px}.clear{clear:both}
+.card{margin-top:14px;background:#0a0e0d;border:1px solid #18322d;border-radius:18px;padding:14px}
+input,button{font:inherit}input{width:100%;padding:13px;border-radius:12px;border:1px solid #28534a;background:#050706;color:#fff;outline:none}button{border:0;border-radius:12px;padding:12px 15px;background:var(--cyan);color:#00140f;font-weight:800}
+.row{display:flex;gap:9px;margin-top:9px}.row button{flex:1}.status{margin-top:9px;font-size:13px;color:var(--muted)}
+.feature{display:flex;align-items:center;justify-content:space-between;padding:13px 4px;border-bottom:1px solid #15201e}.feature:last-child{border-bottom:0}.name{font-weight:650}.desc{font-size:11px;color:var(--muted);margin-top:3px}
+.switch{width:48px;height:28px;border-radius:20px;background:#27302e;padding:3px;flex:none}.knob{width:22px;height:22px;border-radius:50%;background:#aaa;transition:.15s}.switch.on{background:var(--cyan)}.switch.on .knob{transform:translateX(20px);background:#00140f}
+#trainer{display:none}.trainerTop{display:flex;justify-content:space-between;gap:10px;align-items:center}.score{color:var(--cyan);font-weight:800}.arena{position:relative;height:430px;border:1px solid #1b443b;border-radius:16px;background:linear-gradient(160deg,#07100e,#020303);overflow:hidden;margin-top:12px;touch-action:none}
+.target{position:absolute;width:58px;height:58px;border-radius:50%;background:radial-gradient(circle,#fff 0 12%,#00ffcc 13% 40%,#006b5a 41% 70%,#001c17 71%);box-shadow:0 0 22px #00ffcc;transform:translate(-50%,-50%);cursor:pointer}
+#log{max-height:150px;overflow:auto;font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;color:#a7bcb6;white-space:pre-wrap}
+.small{font-size:12px;color:var(--muted)}.danger{background:#2b1118;color:#ff9caf}.hidden{display:none!important}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section class="hero">
+    <img class="avatar" src="icon-180.png" alt="avatar">
+    <div class="title">⚡ MENU 10 V2</div>
+    <div class="sub">VANNAM • Aim Trainer & Game Helper</div>
+    <div class="clear"></div>
+  </section>
+
+  <section class="card" id="auth">
+    <b>🔐 KÍCH HOẠT</b>
+    <input id="key" placeholder="Nhập key" autocomplete="off" style="margin-top:10px">
+    <div class="row"><button onclick="unlock()">KÍCH HOẠT</button></div>
+    <div class="status" id="authStatus">Nhập key để mở menu.</div>
+  </section>
+
+  <section class="card hidden" id="app">
+    <b>10 CHỨC NĂNG</b>
+    <div id="features"></div>
+    <div class="row"><button onclick="openTrainer()">🎯 MỞ AIM TRAINER</button><button class="danger" onclick="resetAll()">↻ RESET</button></div>
+  </section>
+
+  <section class="card" id="trainer">
+    <div class="trainerTop"><b>🎯 AIM TRAINER</b><span class="score" id="score">0 / 20</span></div>
+    <div class="small" id="timer">Thời gian phản xạ: -- ms</div>
+    <div class="arena" id="arena"></div>
+    <div class="row"><button onclick="startTrainer()">BẮT ĐẦU 20 MỤC TIÊU</button><button onclick="closeTrainer()">ĐÓNG</button></div>
+  </section>
+
+  <section class="card hidden" id="logsCard"><b>📋 NHẬT KÝ</b><div id="log" style="margin-top:9px"></div></section>
+</div>
+<script>
+const VALID_KEYS=["PALOFSC2026","VANNAM2026"];
+const features=[
+ ["🎯 Aimlock","Mô phỏng hỗ trợ mục tiêu trong trainer"],
+ ["🪶 Nhẹ tâm","Bài tập kiểm soát thao tác"],
+ ["🔧 Fix rung tâm","Bài tập giữ tâm ổn định"],
+ ["🎯 Fix lạc đạn","Bài tập độ chính xác"],
+ ["➡️ Đạn thẳng","Bài tập flick thẳng"],
+ ["🚀 Aimboots","Tăng nhịp luyện tập"],
+ ["💀 Aimhead","Bài tập ưu tiên vùng đầu"],
+ ["⚙️ Tối ưu máy","Checklist tối ưu thiết bị"],
+ ["📺 Buff màn 120Hz","Kiểm tra cảm giác chuyển động"],
+ ["🔥 Tăng hiệu năng","Theo dõi phiên luyện tập"]
+];
+let states=Array(features.length).fill(false), hits=0, total=20, startAt=0;
+
+function log(s){const el=document.getElementById("log"); el.textContent+="["+new Date().toLocaleTimeString()+"] "+s+"\\n"; el.scrollTop=el.scrollHeight;}
+function unlock(){
+ const k=document.getElementById("key").value.trim();
+ if(VALID_KEYS.includes(k)){
+   document.getElementById("auth").classList.add("hidden");
+   document.getElementById("app").classList.remove("hidden");
+   document.getElementById("logsCard").classList.remove("hidden");
+   document.getElementById("authStatus").textContent="Đã mở khóa.";
+   render();
+   log("Kích hoạt thành công.");
+ }else{
+   document.getElementById("authStatus").textContent="❌ Key không hợp lệ.";
+   log("Key sai.");
+ }
+}
+function render(){
+ const box=document.getElementById("features"); box.innerHTML="";
+ features.forEach((f,i)=>{
+   const d=document.createElement("div"); d.className="feature";
+   d.innerHTML=`<div><div class="name">${f[0]}</div><div class="desc">${f[1]}</div></div>
+   <div class="switch ${states[i]?"on":""}" onclick="toggle(${i})"><div class="knob"></div></div>`;
+   box.appendChild(d);
+ });
+}
+function toggle(i){states[i]=!states[i]; render(); log(features[i][0]+" → "+(states[i]?"BẬT":"TẮT"));}
+function resetAll(){states.fill(false);render();log("Đã reset 10 chức năng.");}
+function openTrainer(){document.getElementById("trainer").style.display="block";document.getElementById("trainer").scrollIntoView({behavior:"smooth"});}
+function closeTrainer(){document.getElementById("trainer").style.display="none";}
+function startTrainer(){
+ hits=0;document.getElementById("score").textContent="0 / "+total;placeTarget();
+}
+function placeTarget(){
+ const arena=document.getElementById("arena");
+ arena.innerHTML="";
+ if(hits>=total){log("Hoàn thành aim trainer.");return;}
+ const t=document.createElement("div");t.className="target";
+ const pad=40,x=pad+Math.random()*(arena.clientWidth-pad*2),y=pad+Math.random()*(arena.clientHeight-pad*2);
+ t.style.left=x+"px";t.style.top=y+"px";startAt=performance.now();
+ t.onclick=()=>{const ms=Math.round(performance.now()-startAt);hits++;document.getElementById("score").textContent=hits+" / "+total;document.getElementById("timer").textContent="Thời gian phản xạ: "+ms+" ms";log("Mục tiêu "+hits+"/"+total+" • "+ms+" ms");placeTarget();};
+ arena.appendChild(t);
+}
+render();
+</script>
+</body>
+</html>

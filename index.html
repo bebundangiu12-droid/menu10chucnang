@@ -2,1451 +2,1184 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#070914">
-<title>VANNAM VIP PRO</title>
+<link rel="manifest" href="manifest.json">
+<title>MENU 10 CHỨC NĂNG VIP PRO</title>
 
 <style>
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+*{box-sizing:border-box;margin:0;padding:0}
 
 body{
- margin:0;
- min-height:100vh;
- font-family:Arial,sans-serif;
- background:radial-gradient(circle at top,#18204a,#090b18 48%,#05060c);
- color:#fff
+  background:
+    radial-gradient(circle at top,#151b38 0,#070914 42%,#03040a 100%);
+  color:#00ffd5;
+  font-family:Arial,sans-serif;
+  min-height:100vh;
+  padding:15px;
 }
 
-.wrap{
- max-width:650px;
- margin:auto;
- padding:18px
-}
-
-.card{
- background:#0d1123ee;
- border:1px solid #303867;
- border-radius:24px;
- padding:18px;
- box-shadow:0 0 30px #465aff2e
+.container{
+  max-width:520px;
+  margin:auto;
 }
 
 h1{
- text-align:center;
- font-size:24px;
- margin:4px
+  text-align:center;
+  font-size:23px;
+  margin:10px 0 5px;
+  text-shadow:0 0 15px #00ffd5;
 }
 
 .sub{
- text-align:center;
- color:#9da8d8;
- font-size:13px;
- margin-bottom:18px
+  text-align:center;
+  color:#777;
+  font-size:12px;
+  margin-bottom:15px;
+}
+
+.card{
+  background:rgba(10,13,27,.92);
+  border:1px solid #202944;
+  border-radius:15px;
+  padding:15px;
+  margin-bottom:12px;
+  box-shadow:0 0 20px rgba(0,255,213,.06);
+}
+
+.keybox{
+  display:flex;
+  gap:8px;
+}
+
+input,select,button{
+  border:0;
+  outline:0;
+  border-radius:9px;
+  padding:11px;
+  font-size:14px;
 }
 
 input,select{
- width:100%;
- padding:14px;
- border-radius:14px;
- border:1px solid #394477;
- background:#080b18;
- color:#fff;
- outline:0;
- font-size:16px
+  background:#0d1120;
+  color:#00ffd5;
+  border:1px solid #28314b;
+}
+
+.keybox input{
+  flex:1;
+  text-align:center;
 }
 
 button{
- border:0;
- border-radius:14px;
- padding:13px 16px;
- background:#202952;
- color:#fff;
- font-weight:bold
+  background:#00ffd5;
+  color:#03100d;
+  font-weight:bold;
+  cursor:pointer;
 }
 
-.mainbtn{
- width:100%;
- margin-top:10px;
- background:linear-gradient(135deg,#596cff,#8b5cff)
+button:active{
+  transform:scale(.97);
 }
-
-.hidden{display:none!important}
 
 .menu{
- display:grid;
- gap:10px;
- margin-top:16px
+  opacity:.35;
+  pointer-events:none;
+  transition:.3s;
+}
+
+.menu.unlocked{
+  opacity:1;
+  pointer-events:auto;
 }
 
 .item{
- display:flex;
- align-items:center;
- justify-content:space-between;
- padding:14px;
- border:1px solid #293257;
- border-radius:17px;
- background:#141930d9
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#0c1020;
+  border:1px solid #202943;
+  border-radius:11px;
+  padding:13px;
+  margin:8px 0;
 }
 
 .item small{
- display:block;
- color:#8994c2;
- margin-top:4px
+  display:block;
+  color:#68718a;
+  margin-top:4px;
+  font-size:10px;
 }
 
 .switch{
- width:48px;
- height:27px;
- border-radius:30px;
- background:#303751;
- position:relative
+  width:48px;
+  height:25px;
+  background:#292f42;
+  border-radius:20px;
+  position:relative;
+  flex-shrink:0;
+  cursor:pointer;
 }
 
 .switch:after{
- content:"";
- position:absolute;
- width:21px;
- height:21px;
- top:3px;
- left:3px;
- border-radius:50%;
- background:#aaa;
- transition:.2s
+  content:"";
+  position:absolute;
+  width:21px;
+  height:21px;
+  left:2px;
+  top:2px;
+  background:#fff;
+  border-radius:50%;
+  transition:.2s;
 }
 
 .switch.on{
- background:#4f67ff
+  background:#00ffd5;
+  box-shadow:0 0 12px #00ffd5;
 }
 
 .switch.on:after{
- left:24px;
- background:#fff
+  left:25px;
 }
 
-.panel{
- margin-top:16px;
- padding:15px;
- border:1px solid #303867;
- border-radius:18px;
- background:#0a0e1d
+h2{
+  font-size:16px;
+  margin-bottom:12px;
 }
 
-.stats{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:8px
+h3{
+  font-size:13px;
+  margin:12px 0 7px;
+  color:#fff;
 }
 
-.stat{
- padding:12px 6px;
- border-radius:14px;
- background:#12182d;
- text-align:center
+.row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
 }
 
-.stat strong{
- display:block;
- font-size:20px
+.label{
+  display:flex;
+  justify-content:space-between;
+  color:#aaa;
+  font-size:12px;
+  margin:10px 0 5px;
 }
 
-.stat span{
- color:#8994c2;
- font-size:11px
+.value{
+  color:#00ffd5;
+  font-weight:bold;
 }
 
-.controls{
- display:flex;
- gap:8px;
- margin:10px 0
+input[type=range]{
+  width:100%;
+  accent-color:#00ffd5;
+  padding:0;
 }
 
-.controls button{
- flex:1
-}
-
-.arena{
- position:relative;
- height:420px;
- margin-top:12px;
- border-radius:20px;
- overflow:hidden;
- border:1px solid #394477;
- background:
- linear-gradient(#ffffff08 1px,transparent 1px),
- linear-gradient(90deg,#ffffff08 1px,transparent 1px),
- #080b18;
- background-size:25px 25px
-}
-
-.chestZone{
- position:absolute;
- left:15%;
- right:15%;
- top:31%;
- height:27%;
- border:1px dashed #6e8cff8c;
- border-radius:50%;
- display:flex;
- align-items:flex-start;
- justify-content:center;
- color:#6874a7;
- font-size:11px;
- padding-top:6px;
- pointer-events:none
-}
-
-.target{
- position:absolute;
- width:48px;
- height:48px;
- border-radius:50%;
- background:radial-gradient(
-   circle,
-   #fff 0 12%,
-   #ff4f70 13% 42%,
-   #7c2cff 43% 68%,
-   #161a35 69%
- );
- box-shadow:0 0 18px #7c5cff;
- transform:translate(-50%,-50%);
- cursor:pointer
-}
-
-.target:after{
- content:"";
- position:absolute;
- left:50%;
- top:50%;
- width:7px;
- height:7px;
- border-radius:50%;
- background:#fff;
- transform:translate(-50%,-50%)
-}
-
-.log{
- max-height:150px;
- overflow:auto;
- margin-top:10px;
- padding:10px;
- border-radius:12px;
- background:#060813;
- color:#7e8bc0;
- font-size:12px;
- white-space:pre-line
-}
-
-.badge{
- display:inline-block;
- padding:5px 9px;
- border-radius:20px;
- background:#252d5b;
- color:#aeb8ff;
- font-size:11px;
- margin:3px
-}
-
-.range{
- width:100%
+.bigvalue{
+  text-align:center;
+  font-size:31px;
+  font-weight:bold;
+  color:#00ffd5;
+  text-shadow:0 0 15px #00ffd5;
+  margin:8px;
 }
 
 .sensgrid{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:8px
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:10px;
 }
 
 .sens{
- padding:10px;
- border-radius:12px;
- background:#12182d
+  background:#080c18;
+  border:1px solid #202943;
+  border-radius:10px;
+  padding:11px;
 }
 
-.sens b{
- font-size:18px
+.sens-name{
+  color:#8992aa;
+  font-size:11px;
+}
+
+.sens-val{
+  color:#00ffd5;
+  font-size:24px;
+  font-weight:bold;
+  margin-top:3px;
+}
+
+.mode{
+  display:flex;
+  gap:7px;
+  overflow-x:auto;
+  padding-bottom:5px;
+}
+
+.mode button{
+  white-space:nowrap;
+  background:#11182a;
+  color:#aaa;
+  border:1px solid #28314b;
+}
+
+.mode button.active{
+  background:#00ffd5;
+  color:#03100d;
+}
+
+#arena{
+  position:relative;
+  height:330px;
+  background:
+    radial-gradient(circle at center,rgba(0,255,213,.08),transparent 55%),
+    #050811;
+  border:1px solid #26304a;
+  border-radius:14px;
+  overflow:hidden;
+  margin-top:10px;
+}
+
+#chestZone{
+  position:absolute;
+  left:25%;
+  top:32%;
+  width:50%;
+  height:30%;
+  border:1px dashed rgba(0,255,213,.2);
+  border-radius:50%;
+  pointer-events:none;
+}
+
+#neckZone{
+  position:absolute;
+  left:37%;
+  top:18%;
+  width:26%;
+  height:15%;
+  border:1px dashed rgba(255,80,150,.28);
+  border-radius:50%;
+  pointer-events:none;
+}
+
+.target{
+  position:absolute;
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  background:#ff477e;
+  border:3px solid #fff;
+  box-shadow:0 0 20px #ff477e;
+  transform:translate(-50%,-50%);
+  cursor:pointer;
+}
+
+.cross{
+  position:absolute;
+  width:18px;
+  height:18px;
+  border:2px solid #00ffd5;
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:6px;
+}
+
+.stat{
+  background:#080c18;
+  border-radius:9px;
+  padding:8px;
+  text-align:center;
+}
+
+.stat b{
+  display:block;
+  color:#00ffd5;
+  font-size:17px;
+}
+
+.stat span{
+  color:#666;
+  font-size:9px;
+}
+
+.log{
+  height:120px;
+  overflow:auto;
+  background:#05070d;
+  border:1px solid #202943;
+  border-radius:10px;
+  padding:9px;
+  color:#70798e;
+  font-size:11px;
 }
 
 .note{
- font-size:11px;
- color:#7f89b3;
- line-height:1.4
+  color:#737c91;
+  font-size:10px;
+  line-height:1.5;
+  margin-top:10px;
 }
 
-footer{
- text-align:center;
- color:#5d6790;
- font-size:11px;
- padding:18px 0 5px
+.footer{
+  text-align:center;
+  color:#41485a;
+  font-size:10px;
+  padding:10px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="wrap">
+<div class="container">
+
+<h1>⚡ MENU 10 CHỨC NĂNG</h1>
+<div class="sub">VANNAM • VIP PRO • TRAINING LAB</div>
+
+<div class="card">
+  <div class="keybox">
+    <input id="keyInput" type="text" placeholder="Nhập key kích hoạt">
+    <button onclick="unlock()">KÍCH HOẠT</button>
+  </div>
+</div>
+
+<div class="menu" id="menu">
+
 <div class="card">
 
-<h1>🔥 MENU 10 CHỨC NĂNG VIP PRO</h1>
-
-<div class="sub">
-VANNAM • AIM TRAINER • SENSITIVITY LAB
+<div class="item">
+<div>🎯 Aimlock<small>Training hỗ trợ ngắm</small></div>
+<div class="switch" onclick="toggle(this,'Aimlock')"></div>
 </div>
 
-<div id="login">
+<div class="item">
+<div>🪶 Nhẹ tâm<small>Luyện kéo tâm mượt</small></div>
+<div class="switch" onclick="toggle(this,'Nhẹ tâm')"></div>
+</div>
 
-<input
- id="key"
- type="password"
- placeholder="Nhập key kích hoạt">
+<div class="item">
+<div>🔧 Fix rung tâm<small>Luyện kiểm soát tay</small></div>
+<div class="switch" onclick="toggle(this,'Fix rung tâm')"></div>
+</div>
 
-<button
- class="mainbtn"
- onclick="activate()">
-KÍCH HOẠT VIP PRO
-</button>
+<div class="item">
+<div>🎯 Fix lạc đạn<small>Luyện tracking</small></div>
+<div class="switch" onclick="toggle(this,'Fix lạc đạn')"></div>
+</div>
+
+<div class="item">
+<div>➡️ Đạn thẳng<small>Training flick</small></div>
+<div class="switch" onclick="toggle(this,'Đạn thẳng')"></div>
+</div>
+
+<div class="item">
+<div>🚀 Aimboots<small>Chế độ luyện phản xạ</small></div>
+<div class="switch" onclick="toggle(this,'Aimboots')"></div>
+</div>
+
+<div class="item">
+<div>💀 Aimhead<small>Luyện vùng đầu</small></div>
+<div class="switch" onclick="toggle(this,'Aimhead')"></div>
+</div>
+
+<div class="item">
+<div>⚙️ Tối ưu máy<small>Kiểm tra thiết bị</small></div>
+<div class="switch" onclick="toggle(this,'Tối ưu máy')"></div>
+</div>
+
+<div class="item">
+<div>📺 Buff màn 120Hz<small>Kiểm tra cảm giác touch</small></div>
+<div class="switch" onclick="toggle(this,'Buff màn 120Hz')"></div>
+</div>
+
+<div class="item">
+<div>🔥 Tăng hiệu năng<small>Training ổn định thao tác</small></div>
+<div class="switch" onclick="toggle(this,'Tăng hiệu năng')"></div>
+</div>
 
 </div>
 
-<div id="app" class="hidden">
+<!-- TRAINER -->
+<div class="card">
 
-<div style="text-align:center;margin-bottom:10px">
+<h2>🎯 AIM TRAINER VIP</h2>
 
-<span class="badge">VANNAM2026</span>
-<span class="badge">VIP PRO</span>
-<span class="badge">TRAINING</span>
-
+<div class="mode">
+<button class="active" onclick="setMode(this,'flick')">Flick</button>
+<button onclick="setMode(this,'tracking')">Tracking</button>
+<button onclick="setMode(this,'speed')">Speed</button>
+<button onclick="setMode(this,'neck')">🎯 Cổ mục tiêu</button>
 </div>
 
-<div class="menu" id="menu"></div>
+<h3>Độ khó</h3>
 
-
-<!-- AIM TRAINER -->
-
-<div class="panel">
-
-<h3>🎯 AIM TRAINER</h3>
-
-<select id="mode">
-
-<option value="flick">
-Flick
-</option>
-
-<option value="tracking">
-Tracking
-</option>
-
-<option value="speed">
-Speed
-</option>
-
-<option value="neck">
-🎯 Cổ mục tiêu
-</option>
-
-</select>
-
-<div style="height:8px"></div>
-
-<select id="difficulty">
-
-<option value="easy">
-Easy
-</option>
-
-<option value="medium">
-Medium
-</option>
-
-<option value="hard">
-Hard
-</option>
-
-<option value="vip">
-VIP
-</option>
-
-</select>
-
-<div class="controls">
-
-<button onclick="startTrainer()">
-▶ BẮT ĐẦU
-</button>
-
-<button onclick="stopTrainer()">
-■ DỪNG
-</button>
-
+<div class="mode">
+<button class="active" onclick="setDifficulty(this,'easy')">Easy</button>
+<button onclick="setDifficulty(this,'medium')">Medium</button>
+<button onclick="setDifficulty(this,'hard')">Hard</button>
+<button onclick="setDifficulty(this,'vip')">VIP</button>
 </div>
 
 <div class="stats">
-
-<div class="stat">
-<strong id="score">0</strong>
-<span>ĐIỂM</span>
+<div class="stat"><b id="score">0</b><span>SCORE</span></div>
+<div class="stat"><b id="hits">0</b><span>HITS</span></div>
+<div class="stat"><b id="accuracy">0%</b><span>ACC</span></div>
+<div class="stat"><b id="reaction">0</b><span>MS</span></div>
 </div>
 
-<div class="stat">
-<strong id="accuracy">0%</strong>
-<span>ACCURACY</span>
+<div id="arena">
+<div id="chestZone"></div>
+<div id="neckZone"></div>
+<div id="cross"></div>
 </div>
 
-<div class="stat">
-<strong id="reaction">0</strong>
-<span>MS</span>
+<div class="row" style="margin-top:10px">
+<button onclick="startTrainer()">▶ BẮT ĐẦU</button>
+<button onclick="stopTrainer()">■ DỪNG</button>
 </div>
 
-</div>
-
-<div class="arena" id="arena">
-
-<div class="chestZone">
-VÙNG NGỰC • KÉO NHẸ
-</div>
-
+<div class="note">
+🎯 Vùng ngực: mục tiêu tập trung quanh vùng thân trên.<br>
+🎯 Cổ mục tiêu: mục tiêu xuất hiện ở vùng cổ để luyện thao tác kéo nhẹ lên.<br>
+Chế độ này chỉ là aim trainer, không điều khiển game.
 </div>
 
 </div>
 
+<!-- SENSITIVITY LAB -->
+<div class="card">
 
-<!-- SENSITIVITY -->
+<h2>📱 SENSITIVITY LAB • 0–200</h2>
 
-<div class="panel">
+<div class="row">
 
-<h3>📱 SENSITIVITY LAB</h3>
-
-<select
- id="deviceType"
- onchange="updateDeviceModels()">
-
-<option value="iphone">
-iPhone
-</option>
-
-<option value="samsung">
-Samsung
-</option>
-
-<option value="xiaomi">
-Xiaomi / Redmi / POCO
-</option>
-
-<option value="oppo">
-OPPO / Realme
-</option>
-
-<option value="vivo">
-vivo / iQOO
-</option>
-
-<option value="other">
-Android khác
-</option>
-
+<div>
+<h3>Hãng máy</h3>
+<select id="brand" onchange="updateModels()">
+<option>iPhone</option>
+<option>Samsung</option>
+<option>Xiaomi / Redmi / POCO</option>
+<option>OPPO / Realme</option>
+<option>vivo / iQOO</option>
+<option>Android khác</option>
 </select>
+</div>
 
-<div style="height:8px"></div>
+<div>
+<h3>Model</h3>
+<select id="model"></select>
+</div>
 
-<select id="deviceModel"></select>
+</div>
 
-<div style="height:8px"></div>
-
-<label class="note">
-Kích thước màn hình:
-<b id="screenValue">6.5"</b>
-</label>
+<div class="label">
+<span>Màn hình</span>
+<span class="value" id="screenVal">6.1"</span>
+</div>
 
 <input
- class="range"
  id="screen"
  type="range"
- min="5.0"
+ min="5"
  max="7.2"
- step="0.1"
- value="6.5"
- oninput="generateSensitivity()">
+ step=".1"
+ value="6.1"
+ oninput="generateSensitivity()"
+>
 
-<div style="height:8px"></div>
-
-<label class="note">
-Tần số cảm ứng:
-<b id="touchValue">120Hz</b>
-</label>
+<div class="label">
+<span>Touch / Refresh</span>
+<span class="value" id="touchVal">120Hz</span>
+</div>
 
 <input
- class="range"
  id="touch"
  type="range"
  min="60"
  max="240"
- step="30"
+ step="10"
  value="120"
- oninput="generateSensitivity()">
+ oninput="generateSensitivity()"
+>
 
+<div class="bigvalue" id="sensPower">185</div>
 
-<div class="sensgrid" style="margin-top:12px">
-
-<div class="sens">
-Tổng quát<br>
-<b id="sGeneral">90</b>
-</div>
+<div class="sensgrid">
 
 <div class="sens">
-Red Dot<br>
-<b id="sRed">88</b>
+<div class="sens-name">TỔNG QUÁT</div>
+<div class="sens-val" id="sGeneral">190</div>
 </div>
 
 <div class="sens">
-2X Scope<br>
-<b id="s2">82</b>
+<div class="sens-name">RED DOT</div>
+<div class="sens-val" id="sRed">185</div>
 </div>
 
 <div class="sens">
-4X Scope<br>
-<b id="s4">76</b>
+<div class="sens-name">2X SCOPE</div>
+<div class="sens-val" id="s2x">175</div>
 </div>
 
 <div class="sens">
-Sniper<br>
-<b id="sSniper">55</b>
+<div class="sens-name">4X SCOPE</div>
+<div class="sens-val" id="s4x">165</div>
 </div>
 
 <div class="sens">
-Free Look<br>
-<b id="sFree">90</b>
+<div class="sens-name">SNIPER</div>
+<div class="sens-val" id="sSniper">115</div>
+</div>
+
+<div class="sens">
+<div class="sens-name">FREE LOOK</div>
+<div class="sens-val" id="sFree">195</div>
 </div>
 
 </div>
 
-<p class="note">
-Đây là bộ tham chiếu độ nhạy để tự chỉnh trong game.
-Không tự thay đổi cài đặt game và không có một bộ số duy nhất
-đúng cho mọi máy.
-</p>
-
-<button
- class="mainbtn"
- onclick="copySensitivity()">
-
-📋 SAO CHÉP BỘ ĐỘ NHẠY
-
+<button style="width:100%;margin-top:10px"
+onclick="copySensitivity()">
+📋 SAO CHÉP ĐỘ NHẠY
 </button>
 
+<div class="note">
+⚠️ Bản này dùng thang độ nhạy <b>0–200</b>.<br>
+Các con số là mức tham khảo được tạo dựa trên kích thước màn hình và touch/refresh rate. Nên test và tinh chỉnh thêm theo cảm giác tay.
 </div>
 
+</div>
 
-<!-- STATS -->
+<!-- LEVEL -->
+<div class="card">
 
-<div class="panel">
-
-<h3>📈 THỐNG KÊ</h3>
+<h2>🏆 VANNAM LEVEL</h2>
 
 <div class="stats">
-
-<div class="stat">
-<strong id="sessions">0</strong>
-<span>SESSION</span>
+<div class="stat"><b id="level">1</b><span>LEVEL</span></div>
+<div class="stat"><b id="xp">0</b><span>XP</span></div>
+<div class="stat"><b id="sessions">0</b><span>SESSION</span></div>
+<div class="stat"><b id="totalHits">0</b><span>TOTAL HITS</span></div>
 </div>
 
-<div class="stat">
-<strong id="hits">0</strong>
-<span>HITS</span>
-</div>
-
-<div class="stat">
-<strong id="level">1</strong>
-<span>LEVEL</span>
+<div class="row" style="margin-top:10px">
+<button onclick="exportStats()">📄 XUẤT STATS</button>
+<button onclick="resetStats()">♻ RESET</button>
 </div>
 
 </div>
-
-<div style="margin-top:10px">
-XP: <b id="xp">0</b>
-</div>
-
-<div class="controls">
-
-<button onclick="exportStats()">
-📤 Xuất
-</button>
-
-<button onclick="resetStats()">
-♻ Reset
-</button>
-
-</div>
-
-</div>
-
 
 <!-- LOG -->
-
-<div class="panel">
-
-<h3>📜 LOG</h3>
-
+<div class="card">
+<h2>📜 LOG</h2>
 <div class="log" id="log">
-Sẵn sàng...
-</div>
-
-</div>
-
-</div>
-
-<footer>
-MENU 10 CHỨC NĂNG • VIP PRO<br>
-Aim Trainer + Sensitivity Lab
-</footer>
-
+▶ Nhập key để mở khoá menu.
 </div>
 </div>
 
+</div>
+
+<div class="footer">
+VANNAM VIP PRO • Sensitivity Lab 0–200
+</div>
+
+</div>
 
 <script>
 
-const KEY="VANNAM2026";
+const VALID_KEY="VANNAM2026";
 
+let unlocked=false;
 
-const functions=[
+let mode="flick";
+let difficulty="easy";
 
-["🎯","Aimlock","Luyện kéo tâm"],
-
-["🪶","Nhẹ tâm","Luyện độ ổn định"],
-
-["🔧","Fix rung tâm","Bài tập kiểm soát"],
-
-["🎯","Fix lạc đạn","Luyện tracking"],
-
-["➡️","Đạn thẳng","Luyện flick"],
-
-["🚀","Aimboots","Speed training"],
-
-["💀","Aimhead","Luyện độ chính xác"],
-
-["⚙️","Tối ưu máy","Kiểm tra thiết bị"],
-
-["📺","Buff màn 120Hz","Bài test phản xạ"],
-
-["🔥","Tăng hiệu năng","Performance mode"]
-
-];
-
-
-const models={
-
-iphone:[
-"iPhone 8 / SE 2",
-"iPhone X / XS",
-"iPhone 11",
-"iPhone 12",
-"iPhone 13",
-"iPhone 14",
-"iPhone 15",
-"iPhone 16",
-"iPhone 17"
-],
-
-samsung:[
-"Galaxy A Series",
-"Galaxy S Series",
-"Galaxy Note Series",
-"Galaxy Z Series"
-],
-
-xiaomi:[
-"Redmi Note Series",
-"Redmi Series",
-"POCO Series",
-"Xiaomi Series"
-],
-
-oppo:[
-"OPPO A Series",
-"OPPO Reno Series",
-"Realme Series"
-],
-
-vivo:[
-"vivo Y Series",
-"vivo V Series",
-"vivo X Series",
-"iQOO Series"
-],
-
-other:[
-"Android 60Hz",
-"Android 90Hz",
-"Android 120Hz",
-"Android 144/165Hz"
-]
-
-};
-
-
-let stats=JSON.parse(
- localStorage.getItem("vannamStats") ||
- '{"sessions":0,"hits":0,"shots":0,"xp":0,"reaction":[],"score":0}'
-);
-
-
-let running=false;
-let currentTarget=null;
-let startTime=0;
+let trainerRunning=false;
+let target=null;
+let targetStart=0;
+let rounds=0;
 let score=0;
 let hits=0;
 let shots=0;
-let round=0;
-let timer=null;
+let lastReaction=0;
 
+let stats=JSON.parse(localStorage.getItem("vannamStats")||`
+{
+ "sessions":0,
+ "hits":0,
+ "shots":0,
+ "xp":0,
+ "reactions":[]
+}
+`);
 
-function activate(){
+function log(message,color="#727b90"){
+  const box=document.getElementById("log");
+  const line=document.createElement("div");
 
- if(
-  document.getElementById("key").value.trim()
-  !==KEY
- ){
+  line.textContent="▶ "+message;
+  line.style.color=color;
 
-  alert("❌ Key không đúng!");
+  box.appendChild(line);
+  box.scrollTop=box.scrollHeight;
+}
 
-  return;
- }
+function unlock(){
 
- document
- .getElementById("login")
- .classList.add("hidden");
+  const key=document.getElementById("keyInput").value.trim();
 
- document
- .getElementById("app")
- .classList.remove("hidden");
+  if(key===VALID_KEY){
 
- renderMenu();
+    unlocked=true;
 
- updateStats();
+    document.getElementById("menu").classList.add("unlocked");
 
- updateDeviceModels();
+    log("✅ Key hợp lệ • VIP PRO đã mở","#00ffd5");
 
- generateSensitivity();
+  }else{
 
- log("✅ Kích hoạt VIP PRO thành công");
+    log("❌ Key không hợp lệ","#ff477e");
 
+  }
+}
+
+function toggle(el,name){
+
+  if(!unlocked)return;
+
+  el.classList.toggle("on");
+
+  const state=el.classList.contains("on");
+
+  log(
+    name+" : "+(state?"BẬT":"TẮT"),
+    state?"#00ffd5":"#ff477e"
+  );
 }
 
 
-function renderMenu(){
+/* =========================
+   TRAINER
+========================= */
 
- const box=document.getElementById("menu");
+function setMode(btn,newMode){
 
- box.innerHTML="";
+  document.querySelectorAll(".mode button").forEach(b=>{
+    if(
+      b.textContent.includes("Flick") ||
+      b.textContent.includes("Tracking") ||
+      b.textContent.includes("Speed") ||
+      b.textContent.includes("Cổ")
+    ){
+      b.classList.remove("active");
+    }
+  });
 
- functions.forEach((f,i)=>{
+  btn.classList.add("active");
 
-  const d=document.createElement("div");
+  mode=newMode;
 
-  d.className="item";
-
-  d.innerHTML=`
-
-  <div>
-
-  <b>
-  ${f[0]} ${f[1]}
-  </b>
-
-  <small>
-  ${f[2]}
-  </small>
-
-  </div>
-
-  <div
-   class="switch"
-   onclick="toggleFunc(this,${i})">
-  </div>
-
-  `;
-
-  box.appendChild(d);
-
- });
-
+  log("Trainer: "+newMode);
 }
 
+function setDifficulty(btn,newDifficulty){
 
-function toggleFunc(el,i){
+  const buttons=btn.parentElement.querySelectorAll("button");
 
- el.classList.toggle("on");
+  buttons.forEach(b=>b.classList.remove("active"));
 
- log(
-  functions[i][0]+" "+
-  functions[i][1]+" → "+
-  (
-   el.classList.contains("on")
-   ?"BẬT"
-   :"TẮT"
-  )
- );
+  btn.classList.add("active");
 
+  difficulty=newDifficulty;
+
+  log("Độ khó: "+newDifficulty);
 }
 
+function getTargetSize(){
 
-function log(t){
+  if(difficulty==="easy")return 42;
+  if(difficulty==="medium")return 36;
+  if(difficulty==="hard")return 31;
 
- const box=document.getElementById("log");
-
- box.textContent=
- "["+
- new Date().toLocaleTimeString()+
- "] "+
- t+
- "\n"+
- box.textContent;
-
+  return 27;
 }
 
+function getPosition(){
 
-function save(){
+  const arena=document.getElementById("arena");
 
- localStorage.setItem(
-  "vannamStats",
-  JSON.stringify(stats)
- );
+  const w=arena.clientWidth;
+  const h=arena.clientHeight;
 
- updateStats();
+  let x;
+  let y;
 
-}
+  if(mode==="neck"){
 
+    x=w*(.35+Math.random()*.30);
+    y=h*(.20+Math.random()*.13);
 
-function updateStats(){
+  }else{
 
- document.getElementById("sessions")
- .textContent=stats.sessions;
+    x=w*(.18+Math.random()*.64);
 
- document.getElementById("hits")
- .textContent=stats.hits;
-
- document.getElementById("xp")
- .textContent=stats.xp;
-
- document.getElementById("level")
- .textContent=
- Math.floor(stats.xp/500)+1;
-
-}
-
-
-function startTrainer(){
-
- stopTrainer();
-
- running=true;
-
- score=0;
- hits=0;
- shots=0;
- round=0;
-
- document.getElementById("score")
- .textContent=0;
-
- document.getElementById("accuracy")
- .textContent="0%";
-
- document.getElementById("reaction")
- .textContent=0;
-
- stats.sessions++;
-
- save();
-
- log(
-  "🎯 Bắt đầu "+
-  document.getElementById("mode").value+
-  " • "+
-  document.getElementById("difficulty").value
- );
-
- spawnTarget();
-
-}
-
-
-function stopTrainer(){
-
- running=false;
-
- if(timer){
-  clearTimeout(timer);
-  timer=null;
- }
-
- if(currentTarget){
-  currentTarget.remove();
-  currentTarget=null;
- }
-
-}
-
-
-function spawnTarget(){
-
- if(!running)return;
-
- if(round>=20){
-
-  finishTrainer();
-
-  return;
- }
-
- round++;
-
- shots++;
-
- if(currentTarget)
- currentTarget.remove();
-
- currentTarget=
- document.createElement("div");
-
- currentTarget.className="target";
-
-
- const difficulty=
- document.getElementById("difficulty").value;
-
- const mode=
- document.getElementById("mode").value;
-
-
- let yMin=.28;
- let yMax=.58;
-
-
- if(difficulty==="medium"){
-  yMin=.30;
-  yMax=.57;
- }
-
-
- if(difficulty==="hard"){
-  yMin=.32;
-  yMax=.55;
- }
-
-
- if(difficulty==="vip"){
-  yMin=.34;
-  yMax=.53;
- }
-
-
- /*
-  CỔ MỤC TIÊU:
-  vị trí cao hơn vùng ngực,
-  chỉ dùng trong Aim Trainer.
- */
-
- if(mode==="neck"){
-
-  yMin=.22;
-  yMax=.34;
-
- }
-
-
- const arena=
- document.getElementById("arena");
-
-
- const x=
- 12+
- Math.random()*76;
-
-
- const y=
- (
-  yMin+
-  Math.random()*
-  (yMax-yMin)
- )*
- arena.clientHeight;
-
-
- currentTarget.style.left=
- x+"%";
-
- currentTarget.style.top=
- y+"px";
-
-
- currentTarget.onclick=function(e){
-
-  e.stopPropagation();
-
-  hitTarget();
-
- };
-
-
- arena.appendChild(currentTarget);
-
-
- startTime=performance.now();
-
-
- let delay=1500;
-
-
- if(difficulty==="medium")
- delay=1200;
-
- if(difficulty==="hard")
- delay=900;
-
- if(difficulty==="vip")
- delay=700;
-
-
- timer=setTimeout(()=>{
-
-  if(running){
-
-   log("❌ Trượt mục tiêu");
-
-   spawnTarget();
+    y=h*(.20+Math.random()*.57);
 
   }
 
- },delay);
+  return {x,y};
+}
+
+function spawnTarget(){
+
+  if(target){
+    target.remove();
+    target=null;
+  }
+
+  const arena=document.getElementById("arena");
+
+  const p=getPosition();
+
+  const el=document.createElement("div");
+
+  el.className="target";
+
+  const size=getTargetSize();
+
+  el.style.width=size+"px";
+  el.style.height=size+"px";
+
+  el.style.left=p.x+"px";
+  el.style.top=p.y+"px";
+
+  el.onclick=function(e){
+
+    e.stopPropagation();
+
+    registerHit();
+
+  };
+
+  arena.appendChild(el);
+
+  target=el;
+
+  targetStart=performance.now();
+
+  if(mode==="tracking"){
+
+    moveTracking();
+
+  }
+}
+
+function moveTracking(){
+
+  if(!trainerRunning || !target)return;
+
+  const arena=document.getElementById("arena");
+
+  const w=arena.clientWidth;
+  const h=arena.clientHeight;
+
+  const x=w*(.15+Math.random()*.70);
+  const y=h*(.18+Math.random()*.62);
+
+  target.style.transition=".45s linear";
+  target.style.left=x+"px";
+  target.style.top=y+"px";
+
+  setTimeout(moveTracking,450);
 
 }
 
+function registerHit(){
 
-function hitTarget(){
+  if(!trainerRunning)return;
 
- if(
-  !running ||
-  !currentTarget
- )return;
+  lastReaction=Math.round(performance.now()-targetStart);
 
+  hits++;
+  shots++;
 
- if(timer){
+  rounds++;
 
-  clearTimeout(timer);
+  score+=Math.max(
+    10,
+    Math.round(1000/Math.max(lastReaction,100))
+  );
 
-  timer=null;
+  stats.hits++;
+  stats.shots++;
+  stats.reactions.push(lastReaction);
 
- }
+  if(stats.reactions.length>100){
+    stats.reactions.shift();
+  }
 
+  stats.xp+=10;
 
- const reaction=
- Math.round(
-  performance.now()-
-  startTime
- );
+  saveStats();
 
+  updateStats();
 
- hits++;
+  if(rounds>=20){
 
+    stopTrainer();
 
- score+=Math.max(
-  10,
-  100-Math.floor(reaction/8)
- );
+    log("🏁 Hoàn thành 20 mục tiêu","#00ffd5");
 
+    return;
 
- stats.hits++;
+  }
 
- stats.xp+=25;
-
- stats.reaction.push(
-  reaction
- );
-
-
- if(stats.reaction.length>100)
- stats.reaction.shift();
-
-
- document.getElementById("score")
- .textContent=score;
-
-
- document.getElementById("accuracy")
- .textContent=
- Math.round(
-  hits/shots*100
- )+"%";
-
-
- document.getElementById("reaction")
- .textContent=reaction;
-
-
- currentTarget.remove();
-
- currentTarget=null;
-
- save();
-
- spawnTarget();
+  spawnTarget();
 
 }
 
+function startTrainer(){
 
-function finishTrainer(){
+  if(!unlocked){
 
- running=false;
+    log("🔒 Hãy nhập key trước","#ff477e");
 
- const acc=
- shots
- ?Math.round(hits/shots*100)
- :0;
+    return;
 
+  }
 
- score+=acc*2;
+  stopTrainer();
 
- stats.score+=score;
+  trainerRunning=true;
 
- save();
+  rounds=0;
+  score=0;
+  hits=0;
+  shots=0;
 
+  stats.sessions++;
 
- document.getElementById("score")
- .textContent=score;
+  saveStats();
+  updateStats();
 
+  log(
+    "▶ Trainer bắt đầu • "+mode,
+    "#00ffd5"
+  );
 
- document.getElementById("accuracy")
- .textContent=
- acc+"%";
+  spawnTarget();
 
+}
 
- log(
-  "🏁 Hoàn thành • "+
-  "Điểm: "+
-  score+
-  " • Accuracy: "+
-  acc+
-  "%"
- );
+function stopTrainer(){
 
+  trainerRunning=false;
 
- alert(
-  "🔥 HOÀN THÀNH!\n\n"+
-  "Điểm: "+score+
-  "\nAccuracy: "+acc+"%"+
-  "\nHits: "+hits+"/"+shots
- );
+  if(target){
+
+    target.remove();
+    target=null;
+
+  }
+
+}
+
+document.getElementById("arena").addEventListener("click",function(){
+
+  if(!trainerRunning)return;
+
+  shots++;
+
+  updateStats();
+
+});
+
+function updateStats(){
+
+  const acc=shots
+    ?Math.round((hits/shots)*100)
+    :0;
+
+  document.getElementById("score").textContent=score;
+  document.getElementById("hits").textContent=hits;
+  document.getElementById("accuracy").textContent=acc+"%";
+  document.getElementById("reaction").textContent=lastReaction||0;
+
+  document.getElementById("sessions").textContent=stats.sessions;
+  document.getElementById("totalHits").textContent=stats.hits;
+
+  const level=Math.floor(stats.xp/100)+1;
+
+  document.getElementById("level").textContent=level;
+  document.getElementById("xp").textContent=stats.xp;
+
+}
+
+function saveStats(){
+
+  localStorage.setItem(
+    "vannamStats",
+    JSON.stringify(stats)
+  );
 
 }
 
 
 /* =========================
-   SENSITIVITY LAB
+   SENSITIVITY LAB 0–200
 ========================= */
 
+const models={
 
-function updateDeviceModels(){
+ "iPhone":[
+   "iPhone SE",
+   "iPhone 11 / 12",
+   "iPhone 13 / 14",
+   "iPhone 15 / 16",
+   "iPhone Pro / Pro Max"
+ ],
 
- const type=
- document.getElementById("deviceType").value;
+ "Samsung":[
+   "Galaxy A Series",
+   "Galaxy S Series",
+   "Galaxy Note",
+   "Galaxy FE",
+   "Galaxy Ultra"
+ ],
 
- const list=
- models[type] ||
- models.other;
+ "Xiaomi / Redmi / POCO":[
+   "Redmi Note",
+   "Redmi K",
+   "POCO X",
+   "POCO F",
+   "Xiaomi Series"
+ ],
 
+ "OPPO / Realme":[
+   "OPPO A Series",
+   "OPPO Reno",
+   "OPPO Find",
+   "Realme C",
+   "Realme GT"
+ ],
 
- const select=
- document.getElementById("deviceModel");
+ "vivo / iQOO":[
+   "vivo Y Series",
+   "vivo V Series",
+   "vivo X Series",
+   "iQOO Z",
+   "iQOO Series"
+ ],
 
+ "Android khác":[
+   "Android 60Hz",
+   "Android 90Hz",
+   "Android 120Hz",
+   "Android 144Hz",
+   "Android Gaming"
+ ]
 
- select.innerHTML="";
+};
 
+function updateModels(){
 
- list.forEach(name=>{
+  const brand=document.getElementById("brand").value;
 
-  const option=
-  document.createElement("option");
+  const select=document.getElementById("model");
 
-  option.textContent=name;
+  select.innerHTML="";
 
-  select.appendChild(option);
+  models[brand].forEach(model=>{
 
- });
+    const option=document.createElement("option");
 
+    option.textContent=model;
+    option.value=model;
 
- generateSensitivity();
+    select.appendChild(option);
+
+  });
+
+  generateSensitivity();
 
 }
 
+function clamp(v,min=0,max=200){
+
+  return Math.max(min,Math.min(max,Math.round(v)));
+
+}
 
 function generateSensitivity(){
 
- const size=
- Number(
-  document.getElementById("screen").value
- );
+  const screen=parseFloat(
+    document.getElementById("screen").value
+  );
 
+  const touch=parseInt(
+    document.getElementById("touch").value
+  );
 
- const touch=
- Number(
-  document.getElementById("touch").value
- );
+  document.getElementById("screenVal").textContent=
+    screen.toFixed(1)+"\"";
 
+  document.getElementById("touchVal").textContent=
+    touch+"Hz";
 
- document.getElementById("screenValue")
- .textContent=
- size.toFixed(1)+'"';
+  /*
+    THANG 0–200
 
+    Màn hình lớn hơn -> giảm nhẹ
+    Touch cao hơn -> tăng nhẹ
+    Mức nền cao để phù hợp hệ 200
+  */
 
- document.getElementById("touchValue")
- .textContent=
- touch+"Hz";
+  const screenAdjust=(6.1-screen)*8;
+  const touchAdjust=(touch-120)*0.06;
 
+  const base=clamp(
+    188+screenAdjust+touchAdjust
+  );
 
- /*
-  Đây là công thức tạo bộ số tham chiếu.
-  Không thay đổi trực tiếp game.
- */
+  const general=clamp(base);
+  const red=clamp(base-5);
+  const s2=clamp(base-15);
+  const s4=clamp(base-27);
+  const sniper=clamp(
+    112+(touch-120)*0.05+(6.1-screen)*4
+  );
+  const free=clamp(base+5);
 
+  document.getElementById("sGeneral").textContent=general;
+  document.getElementById("sRed").textContent=red;
+  document.getElementById("s2x").textContent=s2;
+  document.getElementById("s4x").textContent=s4;
+  document.getElementById("sSniper").textContent=sniper;
+  document.getElementById("sFree").textContent=free;
 
- let base=
- 82+
- (touch-60)/60-
- (size-6.2)*3;
-
-
- let general=
- Math.round(
-  Math.max(
-   70,
-   Math.min(100,base+7)
-  )
- );
-
-
- let red=
- Math.round(
-  Math.max(
-   65,
-   Math.min(100,base+5)
-  )
- );
-
-
- let scope2=
- Math.round(
-  Math.max(
-   60,
-   Math.min(95,base)
-  )
- );
-
-
- let scope4=
- Math.round(
-  Math.max(
-   50,
-   Math.min(90,base-6)
-  )
- );
-
-
- let sniper=
- Math.round(
-  Math.max(
-   35,
-   Math.min(75,base-25)
-  )
- );
-
-
- let free=
- Math.round(
-  Math.max(
-   70,
-   Math.min(100,base+7)
-  )
- );
-
-
- document.getElementById("sGeneral")
- .textContent=general;
-
- document.getElementById("sRed")
- .textContent=red;
-
- document.getElementById("s2")
- .textContent=scope2;
-
- document.getElementById("s4")
- .textContent=scope4;
-
- document.getElementById("sSniper")
- .textContent=sniper;
-
- document.getElementById("sFree")
- .textContent=free;
+  document.getElementById("sensPower").textContent=
+    general;
 
 }
 
-
 function copySensitivity(){
 
- const text=
+  const brand=document.getElementById("brand").value;
+  const model=document.getElementById("model").value;
 
- `VANNAM SENSITIVITY LAB
+  const text=
+`VANNAM VIP PRO
+SENSITIVITY 0–200
 
-Thiết bị:
-${document.getElementById("deviceModel").value}
+Thiết bị: ${brand}
+Model: ${model}
 
-Màn hình:
-${document.getElementById("screen").value}"
+Tổng quát: ${document.getElementById("sGeneral").textContent}
+Red Dot: ${document.getElementById("sRed").textContent}
+2X Scope: ${document.getElementById("s2x").textContent}
+4X Scope: ${document.getElementById("s4x").textContent}
+Sniper: ${document.getElementById("sSniper").textContent}
+Free Look: ${document.getElementById("sFree").textContent}
 
-Touch:
-${document.getElementById("touch").value}Hz
+Thang độ nhạy: 0–200`;
 
-Tổng quát:
-${document.getElementById("sGeneral").textContent}
-
-Red Dot:
-${document.getElementById("sRed").textContent}
-
-2X Scope:
-${document.getElementById("s2").textContent}
-
-4X Scope:
-${document.getElementById("s4").textContent}
-
-Sniper:
-${document.getElementById("sSniper").textContent}
-
-Free Look:
-${document.getElementById("sFree").textContent}`;
-
-
- if(
-  navigator.clipboard &&
-  navigator.clipboard.writeText
- ){
-
-  navigator.clipboard
-  .writeText(text)
+  navigator.clipboard.writeText(text)
   .then(()=>{
-   log("📋 Đã sao chép bộ độ nhạy");
+
+    log("📋 Đã sao chép Sensitivity","#00ffd5");
+
   })
   .catch(()=>{
-   alert(text);
+
+    log("⚠ Không thể tự sao chép trên trình duyệt này","#ff477e");
+
   });
-
- }else{
-
-  alert(text);
-
- }
 
 }
 
 
 /* =========================
-   EXPORT
+   EXPORT / RESET
 ========================= */
-
 
 function exportStats(){
 
- const avg=
- stats.reaction.length
- ?
- Math.round(
-  stats.reaction.reduce(
-   (a,b)=>a+b,
-   0
-  )/
-  stats.reaction.length
- )
- :0;
+  const avg=stats.reactions.length
+    ?Math.round(
+      stats.reactions.reduce((a,b)=>a+b,0)/
+      stats.reactions.length
+    )
+    :0;
 
+  const text=
+`VANNAM VIP PRO STATS
 
- const text=
+Level: ${Math.floor(stats.xp/100)+1}
+XP: ${stats.xp}
+Sessions: ${stats.sessions}
+Total Hits: ${stats.hits}
+Total Shots: ${stats.shots}
+Average Reaction: ${avg} ms
 
- `VANNAM VIP PRO
+Sensitivity system: 0–200
+`;
 
-Sessions:
-${stats.sessions}
+  const blob=new Blob([text],{
+    type:"text/plain"
+  });
 
-Hits:
-${stats.hits}
+  const url=URL.createObjectURL(blob);
 
-XP:
-${stats.xp}
+  const a=document.createElement("a");
 
-Level:
-${Math.floor(stats.xp/500)+1}
+  a.href=url;
+  a.download="VANNAM_VIP_STATS.txt";
 
-Average reaction:
-${avg} ms
+  a.click();
 
-Total score:
-${stats.score}`;
+  URL.revokeObjectURL(url);
 
-
- const blob=
- new Blob(
-  [text],
-  {type:"text/plain"}
- );
-
-
- const url=
- URL.createObjectURL(blob);
-
-
- const a=
- document.createElement("a");
-
-
- a.href=url;
-
- a.download=
- "VANNAM_VIP_PRO_STATS.txt";
-
-
- a.click();
-
-
- URL.revokeObjectURL(url);
-
-
- log("📤 Đã xuất thống kê");
+  log("📄 Đã xuất stats","#00ffd5");
 
 }
-
 
 function resetStats(){
 
- if(
-  !confirm(
-   "Xóa toàn bộ thống kê?"
-  )
- )return;
+  if(!confirm("Xoá toàn bộ thống kê?"))return;
 
+  stats={
+    sessions:0,
+    hits:0,
+    shots:0,
+    xp:0,
+    reactions:[]
+  };
 
- stats={
-  sessions:0,
-  hits:0,
-  shots:0,
-  xp:0,
-  reaction:[],
-  score:0
- };
+  saveStats();
+  updateStats();
 
-
- save();
-
- log("♻ Đã reset thống kê");
+  log("♻ Đã reset thống kê","#ff477e");
 
 }
+
+
+/* =========================
+   INIT
+========================= */
+
+updateModels();
+generateSensitivity();
+updateStats();
 
 </script>
 

@@ -2,611 +2,638 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#050812">
-<title>MENU 10 CHỨC NĂNG V5</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#070914">
+<title>MENU 10 CHỨC NĂNG • VIP PRO</title>
 
 <style>
-*{box-sizing:border-box}
-html,body{margin:0;min-height:100%;font-family:Arial,sans-serif;background:#050812;color:#fff}
-body{padding:18px}
-.app{max-width:720px;margin:auto}
-
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:Arial,sans-serif;
+  background:
+    radial-gradient(circle at top,#18204a 0,#090b18 45%,#05060c 100%);
+  color:#fff;
+}
+.wrap{max-width:650px;margin:auto;padding:18px}
 .card{
- background:linear-gradient(145deg,#0c1220,#070b14);
- border:1px solid #24314b;
- border-radius:22px;
- padding:18px;
- margin-bottom:15px;
- box-shadow:0 0 25px #0008;
+  background:rgba(13,17,35,.92);
+  border:1px solid #303867;
+  border-radius:24px;
+  padding:18px;
+  box-shadow:0 0 30px rgba(70,90,255,.18);
 }
-
-.header{display:flex;align-items:center;gap:14px}
-.avatar{
- width:64px;height:64px;border-radius:18px;
- object-fit:cover;border:2px solid #36d9ff;
- box-shadow:0 0 18px #00c8ff66
+h1{
+  text-align:center;
+  margin:4px 0;
+  font-size:24px;
 }
-h1{font-size:22px;margin:0 0 5px}
-.sub{color:#91a1bb;font-size:13px}
-
+.sub{
+  text-align:center;
+  color:#9da8d8;
+  font-size:13px;
+  margin-bottom:18px;
+}
 input{
- width:100%;padding:14px;margin-top:12px;
- border-radius:12px;border:1px solid #263653;
- background:#080e1a;color:#fff;font-size:16px;
- outline:none;
+  width:100%;
+  padding:15px;
+  border-radius:14px;
+  border:1px solid #394477;
+  background:#080b18;
+  color:white;
+  outline:none;
+  font-size:16px;
+  text-align:center;
 }
 button{
- border:0;border-radius:12px;padding:12px 15px;
- color:#fff;background:#15243b;font-weight:bold;
- cursor:pointer;
+  border:0;
+  border-radius:14px;
+  padding:13px 16px;
+  background:#202952;
+  color:#fff;
+  font-weight:bold;
+  cursor:pointer;
 }
-button:active{transform:scale(.98)}
-.primary{background:#087fa8}
-.danger{background:#8d2638}
-.ok{background:#146b45}
-
-#status{
- margin-top:10px;padding:10px;border-radius:10px;
- background:#0b1627;color:#9eb1cc;font-size:13px
+.mainbtn{
+  width:100%;
+  margin-top:10px;
+  background:linear-gradient(135deg,#596cff,#8b5cff);
 }
+.hidden{display:none!important}
 
-.menu{display:grid;gap:10px;margin-top:15px}
-
+.menu{
+  display:grid;
+  gap:10px;
+  margin-top:16px;
+}
 .item{
- display:flex;align-items:center;justify-content:space-between;
- gap:10px;padding:14px;
- border:1px solid #1d2b43;
- border-radius:15px;background:#09111e;
- transition:.2s;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px;
+  border:1px solid #293257;
+  border-radius:17px;
+  background:rgba(20,25,48,.85);
 }
-.item.active{
- border-color:#16c8ff;
- box-shadow:0 0 15px #00c8ff33;
+.item b{font-size:15px}
+.item small{
+  display:block;
+  color:#8994c2;
+  margin-top:4px;
 }
-.info{flex:1}
-.name{font-weight:bold}
-.desc{font-size:12px;color:#7f91ac;margin-top:4px}
-
 .switch{
- width:48px;height:27px;border-radius:20px;
- background:#26334a;padding:3px;position:relative;
+  width:48px;
+  height:27px;
+  border-radius:30px;
+  background:#303751;
+  position:relative;
+  flex-shrink:0;
 }
-.switch i{
- display:block;width:21px;height:21px;border-radius:50%;
- background:#8b98aa;transition:.2s;
+.switch:after{
+  content:"";
+  position:absolute;
+  width:21px;
+  height:21px;
+  top:3px;
+  left:3px;
+  border-radius:50%;
+  background:#aaa;
+  transition:.2s;
 }
-.item.active .switch{background:#00a9d8}
-.item.active .switch i{
- transform:translateX(21px);background:#fff
+.switch.on{
+  background:#4f67ff;
 }
-
-.section-title{
- font-size:16px;font-weight:bold;margin-bottom:10px
-}
-
-.trainer{
- display:none;margin-top:14px
-}
-.trainer.show{display:block}
-
-.tabs{display:flex;gap:8px;margin-bottom:10px}
-.tabs button{flex:1}
-.tabs button.selected{background:#087fa8}
-
-.arena{
- position:relative;width:100%;height:360px;
- overflow:hidden;border-radius:18px;
- border:1px solid #263653;
- background:
- radial-gradient(circle at 50% 50%,#13243b,#060b14 70%);
- touch-action:none;
-}
-.target{
- position:absolute;width:42px;height:42px;border-radius:50%;
- background:#ff334f;
- border:4px solid #fff;
- box-shadow:0 0 18px #ff334f;
- transform:translate(-50%,-50%);
- cursor:pointer;
-}
-.target:after{
- content:"";position:absolute;
- left:50%;top:50%;width:9px;height:9px;
- border-radius:50%;background:#fff;
- transform:translate(-50%,-50%);
+.switch.on:after{
+  left:24px;
+  background:#fff;
 }
 
+.panel{
+  margin-top:16px;
+  padding:15px;
+  border:1px solid #303867;
+  border-radius:18px;
+  background:#0a0e1d;
+}
 .stats{
- display:grid;grid-template-columns:repeat(2,1fr);
- gap:8px;margin-top:10px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
 }
 .stat{
- background:#09111e;border:1px solid #1d2b43;
- padding:11px;border-radius:12px;
+  padding:12px 6px;
+  border-radius:14px;
+  background:#12182d;
+  text-align:center;
 }
-.stat b{display:block;font-size:18px;margin-top:3px}
-.stat span{font-size:11px;color:#8292aa}
+.stat strong{
+  display:block;
+  font-size:20px;
+}
+.stat span{
+  color:#8994c2;
+  font-size:11px;
+}
+.controls{
+  display:flex;
+  gap:8px;
+  margin:10px 0;
+}
+.controls button{flex:1}
+select{
+  width:100%;
+  padding:12px;
+  background:#11162a;
+  color:white;
+  border:1px solid #303867;
+  border-radius:12px;
+}
 
-.actions{display:flex;gap:8px;margin-top:10px}
-.actions button{flex:1}
-
+.arena{
+  position:relative;
+  height:420px;
+  margin-top:12px;
+  border-radius:20px;
+  overflow:hidden;
+  border:1px solid #394477;
+  background:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px),
+    #080b18;
+  background-size:25px 25px;
+}
+.chestZone{
+  position:absolute;
+  left:15%;
+  right:15%;
+  top:31%;
+  height:27%;
+  border:1px dashed rgba(110,140,255,.55);
+  border-radius:50%;
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  color:#6874a7;
+  font-size:11px;
+  padding-top:6px;
+  pointer-events:none;
+}
+.target{
+  position:absolute;
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  background:radial-gradient(circle,#fff 0 12%,#ff4f70 13% 42%,#7c2cff 43% 68%,#161a35 69%);
+  box-shadow:0 0 18px #7c5cff;
+  transform:translate(-50%,-50%);
+  cursor:pointer;
+}
+.target:after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#fff;
+  transform:translate(-50%,-50%);
+}
 .log{
- max-height:180px;overflow:auto;
- font-size:12px;color:#8292aa;
- line-height:1.6;
+  max-height:150px;
+  overflow:auto;
+  margin-top:10px;
+  padding:10px;
+  border-radius:12px;
+  background:#060813;
+  color:#7e8bc0;
+  font-size:12px;
+  white-space:pre-line;
 }
-.log div{border-bottom:1px solid #101b2d;padding:5px 0}
-
-.lock{display:none}
-.lock.show{display:block}
-
-.footer{text-align:center;color:#52617a;font-size:11px;margin:18px 0}
+.badge{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:20px;
+  background:#252d5b;
+  color:#aeb8ff;
+  font-size:11px;
+  margin:3px;
+}
+footer{
+  text-align:center;
+  color:#5d6790;
+  font-size:11px;
+  padding:18px 0 5px;
+}
 </style>
 </head>
 
 <body>
-<div class="app">
+<div class="wrap">
 
 <div class="card">
- <div class="header">
-  <img class="avatar" src="icon-180.png" alt="Avatar">
-  <div>
-   <h1>MENU 10 CHỨC NĂNG V5</h1>
-   <div class="sub">VANNAM • AIM TRAINER</div>
-  </div>
- </div>
 
- <input id="key" type="password" placeholder="Nhập key kích hoạt">
- <button class="primary" style="width:100%;margin-top:10px" onclick="activate()">
-  🔑 KÍCH HOẠT
- </button>
+<h1>🔥 MENU 10 CHỨC NĂNG VIP PRO</h1>
+<div class="sub">VANNAM • AIM TRAINER • PERFORMANCE</div>
 
- <div id="status">🔒 Chưa kích hoạt</div>
+<div id="login">
+  <input id="key" type="password" placeholder="Nhập key kích hoạt">
+  <button class="mainbtn" onclick="activate()">KÍCH HOẠT VIP PRO</button>
 </div>
 
-<div id="locked" class="card">
- <div style="text-align:center;color:#8090a8">
-  Nhập key để mở menu.
- </div>
+<div id="app" class="hidden">
+
+<div style="text-align:center;margin-bottom:10px">
+  <span class="badge">VANNAM2026</span>
+  <span class="badge">VIP PRO</span>
+  <span class="badge">TRAINING</span>
 </div>
 
-<div id="content" style="display:none">
+<div class="menu" id="menu"></div>
 
-<div class="card">
- <div class="section-title">⚡ MENU 10 CHỨC NĂNG</div>
+<div class="panel">
+<h3>🎯 AIM TRAINER</h3>
 
- <div class="menu" id="menu">
+<select id="mode">
+  <option value="flick">Flick</option>
+  <option value="tracking">Tracking</option>
+  <option value="speed">Speed</option>
+</select>
 
-  <div class="item" data-name="Aimlock" onclick="toggle(this)">
-   <div class="info">
-    <div class="name">🎯 Aimlock</div>
-    <div class="desc">Chế độ luyện tâm ngắm.</div>
-   </div><div class="switch"><i></i></div>
-  </div>
+<div style="height:8px"></div>
 
-  <div class="item" data-name="Nhẹ tâm" onclick="toggle(this)">
-   <div class="info">
-    <div class="name">🪶 Nhẹ tâm</div>
-    <div class="desc">Bài luyện điều khiển tâm mượt hơn.</div>
-   </div><div class="switch"><i></i></div>
-  </div>
+<select id="difficulty">
+  <option value="easy">Easy</option>
+  <option value="medium">Medium</option>
+  <option value="hard">Hard</option>
+  <option value="vip">VIP</option>
+</select>
 
-  <div class="item" data-name="Fix rung tâm" onclick="toggle(this)">
-   <div class="info">
-    <div class="name">🔧 Fix rung tâm</div>
-    <div class="desc">Luyện giữ tâm ổn định.</div>
-   </div><div class="switch"><i></i></div>
-  </div>
-
-  <div class="item" data-name="Fix lạc đạn" onclick="toggle(this)">
-   <div class="info">
-    <div class="name">🎯 Fix lạc đạn</div>
-    <div class="desc">Luyện tracking và độ chính xác.</div>
-   </div><div class="switch"><i></i></div>
-  </div>
-
-  <div class="item" data-name="Đạn thẳng" onclick="toggle(this)">
-   <div class="info">
-    <div class="name">➡️ Đạn thẳng</div>
-    <div class="desc">Bài luyện flick nhanh.</div>
-   </div><div class="switch"><i></i></div>
-  </div>
-
-  <div class="item" data-name="Aimboots" onclick="toggle(this)">
-   <div class="info">
-    <div class="name">🚀 Aimboots</div>
-    <div class="desc">Chế độ luyện phản xạ.</div>
-   </div><div class="switch"><i></i></div>
-  </div>
-
-  <div class="item" data-name="Aimhead" onclick="toggle(this)">
-   <div class="info">
-    <div class="name">💀 Aimhead</div>
-    <div class="desc">Luyện flick vào mục tiêu nhỏ.</div>
-   </div><div class="switch"><i></i></div>
-  </div>
-
-  <div class="item" data-name="Tối ưu máy" onclick="toggle(this)">
-   <div class="info">
-    <div class="name">⚙️ Tối ưu máy</div>
-    <div class="desc">Hiển thị checklist tối ưu thiết bị.</div>
-   </div><div class="switch"><i></i></div>
-  </div>
-
-  <div class="item" data-name="Buff màn 120Hz" onclick="toggle(this)">
-   <div class="info">
-    <div class="name">📺 Buff màn 120Hz</div>
-    <div class="desc">Kiểm tra tốc độ hiển thị của thiết bị.</div>
-   </div><div class="switch"><i></i></div>
-  </div>
-
-  <div class="item" data-name="Tăng hiệu năng" onclick="toggle(this)">
-   <div class="info">
-    <div class="name">🔥 Tăng hiệu năng</div>
-    <div class="desc">Checklist giảm tải khi chơi game.</div>
-   </div><div class="switch"><i></i></div>
-  </div>
-
- </div>
+<div class="controls">
+  <button onclick="startTrainer()">▶ BẮT ĐẦU</button>
+  <button onclick="stopTrainer()">■ DỪNG</button>
 </div>
 
-<div class="card">
- <div class="section-title">🎮 AIM TRAINER V5</div>
-
- <div class="tabs">
-  <button id="flickBtn" class="selected" onclick="setMode('flick')">
-   🎯 Flick
-  </button>
-  <button id="trackBtn" onclick="setMode('tracking')">
-   🌀 Tracking
-  </button>
-  <button id="speedBtn" onclick="setMode('speed')">
-   ⚡ Speed
-  </button>
- </div>
-
- <div class="stats">
+<div class="stats">
   <div class="stat">
-   <span>ĐIỂM</span>
-   <b id="score">0</b>
+    <strong id="score">0</strong>
+    <span>ĐIỂM</span>
   </div>
   <div class="stat">
-   <span>MỤC TIÊU</span>
-   <b id="round">0/20</b>
+    <strong id="accuracy">0%</strong>
+    <span>ACCURACY</span>
   </div>
   <div class="stat">
-   <span>ĐỘ CHÍNH XÁC</span>
-   <b id="accuracy">0%</b>
+    <strong id="reaction">0</strong>
+    <span>MS</span>
   </div>
-  <div class="stat">
-   <span>PHẢN XẠ TB</span>
-   <b id="reaction">0 ms</b>
-  </div>
- </div>
-
- <div class="actions">
-  <button class="primary" onclick="startTrainer()">▶ BẮT ĐẦU</button>
-  <button class="danger" onclick="stopTrainer()">■ DỪNG</button>
- </div>
-
- <div class="trainer show" id="trainer">
-  <div class="arena" id="arena"></div>
- </div>
 </div>
 
-<div class="card">
- <div class="section-title">📊 THỐNG KÊ</div>
-
- <div class="stats">
-  <div class="stat">
-   <span>SESSION</span>
-   <b id="sessions">0</b>
+<div class="arena" id="arena">
+  <div class="chestZone">
+    VÙNG NGỰC • KÉO NHẸ
   </div>
-  <div class="stat">
-   <span>HIT</span>
-   <b id="hits">0</b>
-  </div>
-  <div class="stat">
-   <span>SHOTS</span>
-   <b id="shots">0</b>
-  </div>
-  <div class="stat">
-   <span>AVG REACTION</span>
-   <b id="avgReaction">0 ms</b>
-  </div>
- </div>
-
- <div class="actions">
-  <button class="ok" onclick="exportStats()">📄 XUẤT</button>
-  <button class="danger" onclick="resetStats()">♻️ RESET</button>
- </div>
-</div>
-
-<div class="card">
- <div class="section-title">📜 NHẬT KÝ</div>
- <div class="log" id="log"></div>
 </div>
 
 </div>
 
-<div class="footer">
- MENU 10 CHỨC NĂNG V5 • VANNAM2026
+<div class="panel">
+<h3>📈 THỐNG KÊ</h3>
+
+<div class="stats">
+  <div class="stat">
+    <strong id="sessions">0</strong>
+    <span>SESSION</span>
+  </div>
+  <div class="stat">
+    <strong id="hits">0</strong>
+    <span>HITS</span>
+  </div>
+  <div class="stat">
+    <strong id="level">1</strong>
+    <span>LEVEL</span>
+  </div>
 </div>
 
+<div style="margin-top:10px">
+  XP: <b id="xp">0</b>
+</div>
+
+<div class="controls">
+  <button onclick="exportStats()">📤 Xuất</button>
+  <button onclick="resetStats()">♻ Reset</button>
+</div>
+</div>
+
+<div class="panel">
+<h3>📜 LOG</h3>
+<div class="log" id="log">Sẵn sàng...</div>
+</div>
+
+</div>
+
+<footer>
+MENU 10 CHỨC NĂNG • VIP PRO<br>
+Aim Trainer độc lập — không can thiệp trực tiếp vào game
+</footer>
+
+</div>
 </div>
 
 <script>
 const KEY="VANNAM2026";
 
-let mode="flick";
+const functions=[
+ ["🎯","Aimlock","Luyện kéo tâm"],
+ ["🪶","Nhẹ tâm","Luyện độ ổn định"],
+ ["🔧","Fix rung tâm","Bài tập kiểm soát"],
+ ["🎯","Fix lạc đạn","Luyện tracking"],
+ ["➡️","Đạn thẳng","Luyện flick"],
+ ["🚀","Aimboots","Speed training"],
+ ["💀","Aimhead","Luyện độ chính xác"],
+ ["⚙️","Tối ưu máy","Kiểm tra thiết bị"],
+ ["📺","Buff màn 120Hz","Bài test phản xạ"],
+ ["🔥","Tăng hiệu năng","Performance mode"]
+];
+
+let stats=JSON.parse(localStorage.getItem("vannamStats")||`
+{
+ "sessions":0,
+ "hits":0,
+ "shots":0,
+ "xp":0,
+ "reaction":[],
+ "score":0
+}`);
+
 let running=false;
+let currentTarget=null;
+let startTime=0;
 let score=0;
-let round=0;
 let hits=0;
 let shots=0;
-let startTime=0;
-let currentTarget=null;
-let reactions=[];
-
-let stats=JSON.parse(localStorage.getItem("v5stats")||"null")||{
- sessions:0,
- hits:0,
- shots:0,
- reactions:[]
-};
-
-function $(id){
- return document.getElementById(id);
-}
-
-function log(text){
- const d=document.createElement("div");
- d.textContent=new Date().toLocaleTimeString()+" • "+text;
- $("log").prepend(d);
-}
+let round=0;
+let maxRounds=20;
+let timer=null;
 
 function activate(){
- const value=$("key").value.trim();
+ const v=document.getElementById("key").value.trim();
 
- if(value===KEY){
-  $("locked").style.display="none";
-  $("content").style.display="block";
-  $("status").textContent="✅ Đã kích hoạt • VANNAM2026";
-  $("status").style.color="#49e6a1";
-  log("Kích hoạt thành công");
- }else{
-  $("status").textContent="❌ Key không đúng";
-  $("status").style.color="#ff6077";
-  log("Sai key");
- }
-}
-
-$("key").addEventListener("keydown",e=>{
- if(e.key==="Enter") activate();
-});
-
-function toggle(el){
- el.classList.toggle("active");
- const name=el.dataset.name;
- const on=el.classList.contains("active");
-
- log(name+" → "+(on?"BẬT":"TẮT"));
-
- if(name==="Tối ưu máy" && on){
-  log("Checklist: đóng app nền, bật chế độ hiệu năng nếu thiết bị hỗ trợ.");
+ if(v!==KEY){
+   alert("❌ Key không đúng!");
+   return;
  }
 
- if(name==="Buff màn 120Hz" && on){
-  log("Thông tin: ứng dụng không thể ép phần cứng lên 120Hz.");
- }
+ document.getElementById("login").classList.add("hidden");
+ document.getElementById("app").classList.remove("hidden");
+
+ log("✅ Kích hoạt VIP PRO thành công");
+ renderMenu();
+ updateStats();
 }
 
-function setMode(m){
- mode=m;
+function renderMenu(){
+ const box=document.getElementById("menu");
+ box.innerHTML="";
 
- document.querySelectorAll(".tabs button")
- .forEach(x=>x.classList.remove("selected"));
+ functions.forEach((f,i)=>{
+   const div=document.createElement("div");
+   div.className="item";
 
- if(m==="flick")$("flickBtn").classList.add("selected");
- if(m==="tracking")$("trackBtn").classList.add("selected");
- if(m==="speed")$("speedBtn").classList.add("selected");
+   div.innerHTML=`
+   <div>
+     <b>${f[0]} ${f[1]}</b>
+     <small>${f[2]}</small>
+   </div>
+   <div class="switch" onclick="toggleFunc(this,${i})"></div>
+   `;
 
- log("Trainer: "+m);
+   box.appendChild(div);
+ });
 }
 
-function randomPosition(){
- const arena=$("arena");
- const rect=arena.getBoundingClientRect();
+function toggleFunc(el,i){
+ el.classList.toggle("on");
 
- const x=25+Math.random()*(rect.width-50);
- const y=25+Math.random()*(rect.height-50);
+ const state=el.classList.contains("on")?"BẬT":"TẮT";
 
- return {x,y};
+ log(functions[i][0]+" "+functions[i][1]+" → "+state);
 }
 
-function spawnTarget(){
- if(!running)return;
+function log(t){
+ const box=document.getElementById("log");
+ const time=new Date().toLocaleTimeString();
 
- const arena=$("arena");
- arena.innerHTML="";
-
- const t=document.createElement("div");
- t.className="target";
-
- const p=randomPosition();
-
- t.style.left=p.x+"px";
- t.style.top=p.y+"px";
-
- currentTarget=t;
- startTime=performance.now();
-
- t.onclick=function(e){
-  e.stopPropagation();
-
-  if(!running)return;
-
-  const reaction=performance.now()-startTime;
-
-  reactions.push(reaction);
-  hits++;
-  shots++;
-  score+=Math.max(10,Math.round(1000/reaction*100));
-
-  round++;
-
-  updateTrainer();
-
-  if(round>=20){
-   finishTrainer();
-  }else{
-   spawnTarget();
-  }
- };
-
- arena.appendChild(t);
-
- if(mode==="speed"){
-  setTimeout(()=>{
-   if(running && currentTarget===t){
-    shots++;
-    round++;
-    updateTrainer();
-
-    if(round>=20)finishTrainer();
-    else spawnTarget();
-   }
-  },700);
- }
+ box.textContent=
+   "["+time+"] "+t+"\n"+box.textContent;
 }
 
-function startTrainer(){
- if(running)return;
-
- running=true;
- score=0;
- round=0;
- hits=0;
- shots=0;
- reactions=[];
-
- stats.sessions++;
-
- $("arena").innerHTML="";
- updateTrainer();
- spawnTarget();
-
- log("Bắt đầu trainer • "+mode);
-}
-
-function stopTrainer(){
- if(!running)return;
-
- running=false;
- $("arena").innerHTML="";
- currentTarget=null;
-
- log("Đã dừng trainer");
-
- saveStats();
-}
-
-function finishTrainer(){
- running=false;
-
- $("arena").innerHTML="";
- currentTarget=null;
-
- stats.hits+=hits;
- stats.shots+=shots;
- stats.reactions.push(...reactions);
-
- if(stats.reactions.length>100){
-  stats.reactions=stats.reactions.slice(-100);
- }
-
- saveStats();
-
- log(
-  "Hoàn thành • "+score+
-  " điểm • "+hits+"/"+
-  Math.max(1,round)+" hit"
- );
-
- updateTrainer();
-}
-
-function updateTrainer(){
- $("score").textContent=score;
- $("round").textContent=round+"/20";
-
- const acc=shots?Math.round(hits/shots*100):0;
- $("accuracy").textContent=acc+"%";
-
- const avg=reactions.length
-  ?Math.round(reactions.reduce((a,b)=>a+b,0)/reactions.length)
-  :0;
-
- $("reaction").textContent=avg+" ms";
-
+function save(){
+ localStorage.setItem("vannamStats",JSON.stringify(stats));
  updateStats();
 }
 
 function updateStats(){
- $("sessions").textContent=stats.sessions;
- $("hits").textContent=stats.hits;
- $("shots").textContent=stats.shots;
+ document.getElementById("sessions").textContent=stats.sessions;
+ document.getElementById("hits").textContent=stats.hits;
+ document.getElementById("xp").textContent=stats.xp;
 
- const a=stats.reactions.length
-  ?Math.round(
-    stats.reactions.reduce((x,y)=>x+y,0)/
-    stats.reactions.length
-   )
-  :0;
-
- $("avgReaction").textContent=a+" ms";
+ const level=Math.floor(stats.xp/500)+1;
+ document.getElementById("level").textContent=level;
 }
 
-function saveStats(){
- localStorage.setItem("v5stats",JSON.stringify(stats));
- updateStats();
+function startTrainer(){
+
+ stopTrainer();
+
+ running=true;
+ score=0;
+ hits=0;
+ shots=0;
+ round=0;
+
+ document.getElementById("score").textContent=0;
+ document.getElementById("accuracy").textContent="0%";
+ document.getElementById("reaction").textContent=0;
+
+ stats.sessions++;
+ save();
+
+ log("🎯 Bắt đầu "+document.getElementById("mode").value+" • "+document.getElementById("difficulty").value);
+
+ spawnTarget();
 }
 
-function resetStats(){
- if(!confirm("Xóa toàn bộ thống kê?"))return;
+function stopTrainer(){
 
- stats={
-  sessions:0,
-  hits:0,
-  shots:0,
-  reactions:[]
+ running=false;
+
+ if(timer){
+   clearTimeout(timer);
+   timer=null;
+ }
+
+ if(currentTarget){
+   currentTarget.remove();
+   currentTarget=null;
+ }
+}
+
+function spawnTarget(){
+
+ if(!running)return;
+
+ if(round>=maxRounds){
+   finishTrainer();
+   return;
+ }
+
+ round++;
+ shots++;
+
+ const arena=document.getElementById("arena");
+
+ if(currentTarget){
+   currentTarget.remove();
+ }
+
+ currentTarget=document.createElement("div");
+ currentTarget.className="target";
+
+ const difficulty=document.getElementById("difficulty").value;
+
+ let yMin=.28;
+ let yMax=.58;
+
+ if(difficulty==="medium"){
+   yMin=.30;
+   yMax=.57;
+ }
+
+ if(difficulty==="hard"){
+   yMin=.32;
+   yMax=.55;
+ }
+
+ if(difficulty==="vip"){
+   // tập trung quanh vùng ngực, hơi cao để luyện kéo nhẹ
+   yMin=.34;
+   yMax=.53;
+ }
+
+ const x=12+Math.random()*76;
+ const y=(yMin+Math.random()*(yMax-yMin))*arena.clientHeight;
+
+ currentTarget.style.left=x+"%";
+ currentTarget.style.top=y+"px";
+
+ currentTarget.onclick=(e)=>{
+   e.stopPropagation();
+   hitTarget();
  };
 
- saveStats();
- log("Đã reset thống kê");
+ arena.appendChild(currentTarget);
+
+ startTime=performance.now();
+
+ let delay=1500;
+
+ if(difficulty==="medium")delay=1200;
+ if(difficulty==="hard")delay=900;
+ if(difficulty==="vip")delay=700;
+
+ timer=setTimeout(()=>{
+   if(running){
+     log("❌ Trượt mục tiêu");
+     spawnTarget();
+   }
+ },delay);
+}
+
+function hitTarget(){
+
+ if(!running || !currentTarget)return;
+
+ if(timer){
+   clearTimeout(timer);
+   timer=null;
+ }
+
+ const reaction=Math.round(performance.now()-startTime);
+
+ hits++;
+
+ score+=Math.max(10,100-Math.floor(reaction/8));
+
+ stats.hits++;
+ stats.xp+=25;
+ stats.reaction.push(reaction);
+
+ if(stats.reaction.length>100){
+   stats.reaction.shift();
+ }
+
+ const acc=Math.round((hits/shots)*100);
+
+ document.getElementById("score").textContent=score;
+ document.getElementById("accuracy").textContent=acc+"%";
+ document.getElementById("reaction").textContent=reaction;
+
+ currentTarget.remove();
+ currentTarget=null;
+
+ save();
+
+ spawnTarget();
+}
+
+function finishTrainer(){
+
+ running=false;
+
+ const acc=shots?Math.round((hits/shots)*100):0;
+
+ score+=acc*2;
+ stats.score+=score;
+
+ save();
+
+ document.getElementById("score").textContent=score;
+ document.getElementById("accuracy").textContent=acc+"%";
+
+ log(
+   "🏁 Hoàn thành • "+
+   "Điểm: "+score+
+   " • Accuracy: "+acc+"%"
+ );
+
+ alert(
+   "🔥 HOÀN THÀNH!\n\n"+
+   "Điểm: "+score+
+   "\nAccuracy: "+acc+"%"+
+   "\nHits: "+hits+"/"+shots
+ );
 }
 
 function exportStats(){
- const avg=stats.reactions.length
-  ?Math.round(
-    stats.reactions.reduce((a,b)=>a+b,0)/
-    stats.reactions.length
-   )
-  :0;
+
+ const avg=stats.reaction.length
+   ?Math.round(
+      stats.reaction.reduce((a,b)=>a+b,0)/
+      stats.reaction.length
+    )
+   :0;
 
  const text=
-`MENU 10 CHỨC NĂNG V5
-VANNAM
-
+`VANNAM VIP PRO
+================
 Sessions: ${stats.sessions}
 Hits: ${stats.hits}
-Shots: ${stats.shots}
-Accuracy: ${stats.shots?
-Math.round(stats.hits/stats.shots*100):0}%
+XP: ${stats.xp}
+Level: ${Math.floor(stats.xp/500)+1}
 Average reaction: ${avg} ms
-
-Generated: ${new Date().toLocaleString()}
+Total score: ${stats.score}
 `;
 
  const blob=new Blob([text],{type:"text/plain"});
@@ -614,16 +641,37 @@ Generated: ${new Date().toLocaleString()}
 
  const a=document.createElement("a");
  a.href=url;
- a.download="VANNAM_V5_stats.txt";
+ a.download="VANNAM_VIP_PRO_STATS.txt";
  a.click();
 
  URL.revokeObjectURL(url);
 
- log("Đã xuất thống kê");
+ log("📤 Đã xuất thống kê");
 }
 
-updateStats();
-log("Menu V5 đã sẵn sàng");
+function resetStats(){
+
+ if(!confirm("Xóa toàn bộ thống kê?"))return;
+
+ stats={
+   sessions:0,
+   hits:0,
+   shots:0,
+   xp:0,
+   reaction:[],
+   score:0
+ };
+
+ save();
+
+ log("♻ Đã reset thống kê");
+}
+
+document.getElementById("arena").addEventListener("click",()=>{
+ if(running){
+   log("⚠️ Click ngoài mục tiêu");
+ }
+});
 </script>
 
 </body>
